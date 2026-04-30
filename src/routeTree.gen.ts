@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as LookbookRouteImport } from './routes/lookbook'
+import { Route as FitExperienceRouteImport } from './routes/fit-experience'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as AboutRouteImport } from './routes/about'
@@ -24,6 +25,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const LookbookRoute = LookbookRouteImport.update({
   id: '/lookbook',
   path: '/lookbook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FitExperienceRoute = FitExperienceRouteImport.update({
+  id: '/fit-experience',
+  path: '/fit-experience',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
+  '/fit-experience': typeof FitExperienceRoute
   '/lookbook': typeof LookbookRoute
   '/services': typeof ServicesRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
+  '/fit-experience': typeof FitExperienceRoute
   '/lookbook': typeof LookbookRoute
   '/services': typeof ServicesRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
+  '/fit-experience': typeof FitExperienceRoute
   '/lookbook': typeof LookbookRoute
   '/services': typeof ServicesRoute
 }
@@ -79,16 +88,25 @@ export interface FileRouteTypes {
     | '/about'
     | '/collections'
     | '/contact'
+    | '/fit-experience'
     | '/lookbook'
     | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/collections' | '/contact' | '/lookbook' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/collections'
+    | '/contact'
+    | '/fit-experience'
+    | '/lookbook'
+    | '/services'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/collections'
     | '/contact'
+    | '/fit-experience'
     | '/lookbook'
     | '/services'
   fileRoutesById: FileRoutesById
@@ -98,6 +116,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CollectionsRoute: typeof CollectionsRoute
   ContactRoute: typeof ContactRoute
+  FitExperienceRoute: typeof FitExperienceRoute
   LookbookRoute: typeof LookbookRoute
   ServicesRoute: typeof ServicesRoute
 }
@@ -116,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/lookbook'
       fullPath: '/lookbook'
       preLoaderRoute: typeof LookbookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fit-experience': {
+      id: '/fit-experience'
+      path: '/fit-experience'
+      fullPath: '/fit-experience'
+      preLoaderRoute: typeof FitExperienceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -154,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CollectionsRoute: CollectionsRoute,
   ContactRoute: ContactRoute,
+  FitExperienceRoute: FitExperienceRoute,
   LookbookRoute: LookbookRoute,
   ServicesRoute: ServicesRoute,
 }
