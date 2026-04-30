@@ -40,6 +40,7 @@ const collections = [
 ];
 
 function HomePage() {
+  const { t } = useI18n();
   return (
     <>
       {/* HERO */}
