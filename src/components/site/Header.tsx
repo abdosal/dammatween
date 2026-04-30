@@ -1,21 +1,24 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useI18n, type DictKey } from "@/lib/i18n";
+import { LanguageToggle } from "./LanguageToggle";
 
-const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/collections", label: "Collections" },
-  { to: "/fit-experience", label: "Fit Experience" },
-  { to: "/lookbook", label: "Lookbook" },
-  { to: "/services", label: "Services" },
-  { to: "/contact", label: "Contact" },
-] as const;
+const NAV: { to: string; key: DictKey }[] = [
+  { to: "/", key: "nav.home" },
+  { to: "/about", key: "nav.about" },
+  { to: "/collections", key: "nav.collections" },
+  { to: "/fit-experience", key: "nav.fit" },
+  { to: "/lookbook", key: "nav.lookbook" },
+  { to: "/services", key: "nav.services" },
+  { to: "/contact", key: "nav.contact" },
+];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { location } = useRouterState();
+  const { t } = useI18n();
   const isHome = location.pathname === "/";
   const transparent = isHome && !scrolled;
 
@@ -45,7 +48,7 @@ export function Header() {
           <span className="font-light">TWEEN</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-9">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
           {NAV.map((item) => (
             <Link
               key={item.to}
@@ -54,29 +57,34 @@ export function Header() {
               activeProps={{ className: "opacity-100 text-gold" }}
               activeOptions={{ exact: item.to === "/" }}
             >
-              {item.label}
+              {t(item.key)}
             </Link>
           ))}
         </nav>
 
         <div className="hidden lg:flex items-center gap-6">
+          <LanguageToggle />
+          <span className="h-4 w-px bg-current opacity-30" />
           <a
             href="https://wa.me/212522262991"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[0.7rem] font-medium uppercase tracking-[0.22em] text-gold link-underline"
           >
-            Book Fitting
+            {t("nav.book")}
           </a>
         </div>
 
-        <button
-          onClick={() => setOpen((o) => !o)}
-          className="lg:hidden p-2 -mr-2"
-          aria-label="Menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="lg:hidden flex items-center gap-4">
+          <LanguageToggle />
+          <button
+            onClick={() => setOpen((o) => !o)}
+            className="p-2 -mr-2"
+            aria-label="Menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -95,13 +103,10 @@ export function Header() {
                 animation: open ? `reveal-up 0.6s ${0.05 * i + 0.1}s both` : undefined,
               }}
             >
-              {item.label}
+              {t(item.key)}
             </Link>
           ))}
-          <a
-            href="https://wa.me/212522262991"
-            className="mt-6 eyebrow-gold"
-          >
+          <a href="https://wa.me/212522262991" className="mt-6 eyebrow-gold">
             WhatsApp · 05 22 26 29 91
           </a>
         </nav>

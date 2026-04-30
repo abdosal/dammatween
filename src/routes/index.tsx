@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
+import { useI18n } from "@/lib/i18n";
 import heroImg from "@/assets/hero-main.jpg";
 import suitsImg from "@/assets/collection-suits.jpg";
 import jacketsImg from "@/assets/collection-jackets.jpg";
@@ -39,6 +40,7 @@ const collections = [
 ];
 
 function HomePage() {
+  const { t } = useI18n();
   return (
     <>
       {/* HERO */}
@@ -94,11 +96,11 @@ function HomePage() {
             transition={{ delay: 1.2, duration: 1 }}
           >
             <Link to="/collections" className="btn-luxe">
-              <span>Explore Collection</span>
+              <span>{t("cta.explore")}</span>
               <ArrowRight className="h-3.5 w-3.5 relative z-10" />
             </Link>
             <Link to="/contact" className="btn-ghost-luxe">
-              <span>Contact Us</span>
+              <span>{t("cta.contact")}</span>
             </Link>
           </motion.div>
         </div>
@@ -207,7 +209,7 @@ function HomePage() {
             </div>
             <Reveal delay={0.2}>
               <Link to="/collections" className="eyebrow link-underline text-ink">
-                View all categories →
+                {t("cta.viewAll")}
               </Link>
             </Reveal>
           </div>
@@ -263,7 +265,7 @@ function HomePage() {
               </Reveal>
               <Reveal delay={0.35}>
                 <Link to="/fit-experience" className="mt-10 btn-ghost-luxe">
-                  <span>Begin Fitting</span>
+                  <span>{t("cta.beginFit")}</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </Reveal>
@@ -302,7 +304,7 @@ function HomePage() {
             </div>
             <Reveal delay={0.2}>
               <Link to="/lookbook" className="eyebrow link-underline text-ink">
-                Open the gallery →
+                {t("cta.openGallery")}
               </Link>
             </Reveal>
           </div>
@@ -342,10 +344,10 @@ function HomePage() {
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a href="https://wa.me/212522262991" target="_blank" rel="noopener noreferrer" className="btn-ghost-luxe">
-                <span>WhatsApp Concierge</span>
+                <span>{t("cta.whatsapp")}</span>
               </a>
               <Link to="/contact" className="btn-ghost-luxe">
-                <span>Find the Boutique</span>
+                <span>{t("cta.findBoutique")}</span>
               </Link>
             </div>
           </Reveal>

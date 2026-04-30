@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
+import { I18nProvider } from "../lib/i18n";
 
 import appCss from "../styles.css?url";
 
@@ -80,12 +81,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <>
+    <I18nProvider>
       <Header />
       <main className="min-h-screen">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </I18nProvider>
   );
 }

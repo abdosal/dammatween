@@ -5,6 +5,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Toaster } from "sonner";
 import { Phone, MessageCircle, MapPin, Mail, Clock, Instagram, Facebook } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -29,6 +30,7 @@ const schema = z.object({
 const services = ["Suit fitting", "Product inquiry", "Styling advice", "Store visit", "Other"];
 
 function ContactPage() {
+  const { t } = useI18n();
   const [submitting, setSubmitting] = useState(false);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -42,7 +44,7 @@ function ContactPage() {
     }
     setSubmitting(true);
     setTimeout(() => {
-      toast.success("Thank you — a Style Advisor will contact you shortly.");
+      toast.success(t("contact.success"));
       form.reset();
       setSubmitting(false);
     }, 700);
@@ -120,32 +122,32 @@ function ContactPage() {
           {/* Form */}
           <Reveal className="md:col-span-7" delay={0.15}>
             <form onSubmit={onSubmit} className="bg-card border border-border p-8 md:p-12 space-y-6">
-              <p className="eyebrow text-graphite">— Send us a message</p>
+              <p className="eyebrow text-graphite">{t("contact.eyebrow")}</p>
               <div className="grid md:grid-cols-2 gap-6">
-                <Field name="name" label="Full name" />
-                <Field name="phone" label="Phone number" type="tel" />
+                <Field name="name" label={t("contact.name")} />
+                <Field name="phone" label={t("contact.phone")} type="tel" />
               </div>
-              <Field name="email" label="Email" type="email" />
+              <Field name="email" label={t("contact.email")} type="email" />
               <div>
-                <label className="eyebrow text-graphite block mb-3">Service needed</label>
+                <label className="eyebrow text-graphite block mb-3">{t("contact.service")}</label>
                 <select name="service" defaultValue="" required className="w-full bg-transparent border-b border-ink/30 py-3 text-ink focus:outline-none focus:border-gold transition">
-                  <option value="" disabled>Select a service</option>
+                  <option value="" disabled>{t("contact.serviceSelect")}</option>
                   {services.map((s) => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
               <div>
-                <label className="eyebrow text-graphite block mb-3">Message</label>
+                <label className="eyebrow text-graphite block mb-3">{t("contact.message")}</label>
                 <textarea
                   name="message"
                   rows={5}
                   required
                   maxLength={1000}
                   className="w-full bg-transparent border-b border-ink/30 py-3 text-ink focus:outline-none focus:border-gold transition resize-none"
-                  placeholder="Tell us about your visit, occasion or styling needs…"
+                  placeholder={t("contact.placeholder")}
                 />
               </div>
               <button type="submit" disabled={submitting} className="btn-luxe disabled:opacity-50">
-                <span>{submitting ? "Sending…" : "Send message"}</span>
+                <span>{submitting ? t("contact.sending") : t("contact.send")}</span>
               </button>
             </form>
           </Reveal>

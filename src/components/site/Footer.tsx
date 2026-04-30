@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Phone, MessageCircle } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export function Footer() {
+  const { t } = useI18n();
   return (
     <footer className="bg-ink text-ivory">
       <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-20">
@@ -13,8 +15,7 @@ export function Footer() {
               <span className="font-light">TWEEN</span>
             </div>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-ivory/70">
-              Premium men's fashion franchise bringing refined tailoring and
-              Italian-inspired fabrics to Casablanca since 2012.
+              {t("footer.tagline")}
             </p>
             <div className="mt-8 flex items-center gap-4">
               <a
@@ -35,25 +36,25 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <p className="eyebrow-gold">Maison</p>
+            <p className="eyebrow-gold">{t("footer.maison")}</p>
             <ul className="mt-5 space-y-3 text-sm">
-              <li><Link to="/about" className="link-underline text-ivory/80 hover:text-ivory">About</Link></li>
-              <li><Link to="/collections" className="link-underline text-ivory/80 hover:text-ivory">Collections</Link></li>
-              <li><Link to="/lookbook" className="link-underline text-ivory/80 hover:text-ivory">Lookbook</Link></li>
-              <li><Link to="/services" className="link-underline text-ivory/80 hover:text-ivory">Services</Link></li>
-              <li><Link to="/fit-experience" className="link-underline text-ivory/80 hover:text-ivory">Fit Experience</Link></li>
+              <li><Link to="/about" className="link-underline text-ivory/80 hover:text-ivory">{t("nav.about")}</Link></li>
+              <li><Link to="/collections" className="link-underline text-ivory/80 hover:text-ivory">{t("nav.collections")}</Link></li>
+              <li><Link to="/lookbook" className="link-underline text-ivory/80 hover:text-ivory">{t("nav.lookbook")}</Link></li>
+              <li><Link to="/services" className="link-underline text-ivory/80 hover:text-ivory">{t("nav.services")}</Link></li>
+              <li><Link to="/fit-experience" className="link-underline text-ivory/80 hover:text-ivory">{t("nav.fit")}</Link></li>
             </ul>
           </div>
 
           <div className="md:col-span-4">
-            <p className="eyebrow-gold">Boutique Casablanca</p>
+            <p className="eyebrow-gold">{t("footer.boutique")}</p>
             <address className="mt-5 not-italic text-sm leading-relaxed text-ivory/80">
               Triangle d'Or / Racine<br />
               Casablanca, Morocco
             </address>
             <div className="mt-5 space-y-2 text-sm text-ivory/80">
-              <p>Mon – Sat · 10:00 – 20:00</p>
-              <p>Sun · By appointment</p>
+              <p>{t("footer.hoursWeek")}</p>
+              <p>{t("footer.hoursSun")}</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="tel:+212522262991" className="inline-flex items-center gap-2 text-sm text-gold link-underline">
@@ -68,10 +69,10 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-4 border-t border-white/10 pt-8">
           <p className="text-xs uppercase tracking-[0.2em] text-ivory/50">
-            © {new Date().getFullYear()} DAMAT TWEEN Maroc · All rights reserved
+            © {new Date().getFullYear()} DAMAT TWEEN Maroc · {t("footer.rights")}
           </p>
           <p className="text-xs uppercase tracking-[0.2em] text-ivory/50">
-            Refined menswear · Casablanca
+            {t("footer.tag2")}
           </p>
         </div>
       </div>
