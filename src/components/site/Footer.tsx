@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Phone, MessageCircle } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export function Footer() {
   return (
