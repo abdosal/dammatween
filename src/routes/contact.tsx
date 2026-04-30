@@ -30,6 +30,7 @@ const schema = z.object({
 const services = ["Suit fitting", "Product inquiry", "Styling advice", "Store visit", "Other"];
 
 function ContactPage() {
+  const { t } = useI18n();
   const [submitting, setSubmitting] = useState(false);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -43,7 +44,7 @@ function ContactPage() {
     }
     setSubmitting(true);
     setTimeout(() => {
-      toast.success("Thank you — a Style Advisor will contact you shortly.");
+      toast.success(t("contact.success"));
       form.reset();
       setSubmitting(false);
     }, 700);
