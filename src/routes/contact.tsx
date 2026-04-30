@@ -5,6 +5,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Toaster } from "sonner";
 import { Phone, MessageCircle, MapPin, Mail, Clock, Instagram, Facebook } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
