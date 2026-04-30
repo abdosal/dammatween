@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
+import { useI18n } from "@/lib/i18n";
 import heroImg from "@/assets/hero-main.jpg";
 import suitsImg from "@/assets/collection-suits.jpg";
 import jacketsImg from "@/assets/collection-jackets.jpg";
