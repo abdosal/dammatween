@@ -1,22 +1,21 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Header } from "../components/site/Header";
+import { Footer } from "../components/site/Footer";
 
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-ivory px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="eyebrow-gold">Error 404</p>
+        <h1 className="mt-6 display-lg">Page not found</h1>
+        <p className="mt-4 text-sm text-muted-foreground">
+          The page you're looking for has moved or no longer exists.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
+        <div className="mt-10">
+          <Link to="/" className="btn-outline-luxe">
+            <span>Return Home</span>
           </Link>
         </div>
       </div>
@@ -29,19 +28,34 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "DAMAT TWEEN Maroc | Premium Men's Fashion & Luxury Suits in Casablanca" },
+      {
+        name: "description",
+        content:
+          "Discover DAMAT TWEEN Maroc, a premium men's fashion franchise in Casablanca offering refined suits, Italian-inspired fabrics, styling advice, fittings, and contemporary menswear.",
+      },
+      { name: "author", content: "DAMAT TWEEN Maroc" },
+      {
+        name: "keywords",
+        content:
+          "men's fashion Casablanca, luxury suits Morocco, premium menswear Morocco, Italian fabric suits Casablanca, men's tailoring Casablanca, DAMAT TWEEN Maroc",
+      },
+      { property: "og:title", content: "DAMAT TWEEN Maroc | Premium Men's Fashion in Casablanca" },
+      {
+        property: "og:description",
+        content:
+          "Refined tailoring, Italian-inspired fabrics, contemporary menswear and luxury styling for the modern gentleman in Casablanca.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap",
       },
     ],
   }),
@@ -65,5 +79,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
 }
