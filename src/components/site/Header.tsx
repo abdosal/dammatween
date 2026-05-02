@@ -33,6 +33,13 @@ export function Header() {
     setOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
@@ -89,11 +96,11 @@ export function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-20 bottom-0 bg-ink text-ivory transition-all duration-500 ${
+        className={`lg:hidden fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] overflow-y-auto bg-ink text-ivory transition-all duration-500 ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <nav className="flex flex-col px-8 py-12 gap-7">
+        <nav className="flex min-h-full flex-col px-8 py-12 gap-7">
           {NAV.map((item, i) => (
             <Link
               key={item.to}
