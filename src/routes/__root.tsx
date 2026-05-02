@@ -1,9 +1,7 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent } from "@tanstack/react-router";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { I18nProvider } from "../lib/i18n";
-
-import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -51,7 +49,6 @@ export const Route = createRootRoute({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -60,33 +57,21 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
 
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
   return (
-    <I18nProvider>
-      <Header />
-      <main className="min-h-screen">
-        <Outlet />
-      </main>
-      <Footer />
-    </I18nProvider>
+    <>
+      <HeadContent />
+      <I18nProvider>
+        <Header />
+        <main className="min-h-screen">
+          <Outlet />
+        </main>
+        <Footer />
+      </I18nProvider>
+    </>
   );
 }
